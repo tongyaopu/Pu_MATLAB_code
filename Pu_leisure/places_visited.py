@@ -1,0 +1,1 @@
+loc_suzhou = ['31.2983° N, 20.5832° E'];loc_liverpool = ['53.4084° N, 2.9916° W'];loc_duluth = ['46.7867° N, 92.1005° W'];loc_annarbor = ['42.2808° N, 83.7430° W'];

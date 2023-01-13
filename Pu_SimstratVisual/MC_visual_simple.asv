@@ -1,0 +1,56 @@
+function [] = MC_visual_simple(MC_analysis_dir, Tmin, Tmax)
+
+cd(MC_analysis_dir);
+currentWD = pwd; 
+currentWD_split = strsplit(currentWD, '\'); % '/' in mac, '\' in windows
+MCName = char(currentWD_split(end-1));
+
+% plots -----------------------------------------------------------
+
+figure('Position', [100, 80, 900, 500])
+
+subplotRows = 2; subplotColumns = 2;
+
+XaxisNames = {'Wind Speed [m s^{-1}]', ...
+    ['Temperature [', char(0176),'C]'], ....
+    'Vapor Pressure [mbar]', ...
+    'Cloud Cover [1]'};
+
+n = 1; % plot number
+subplot(subplotRows, subplotColumns, n)
+plotRight(ws, MTD)
+xlabel(XaxisNames(n))
+
+n = 2; % plot number
+subplot(subplotRows, subplotColumns, n)
+plotRight(t, MTD)
+xlabel(XaxisNames(n))
+
+n = 3; % plot number
+subplot(subplotRows, subplotColumns, n)
+plotRight(vap, MTD)
+xlabel(XaxisNames(n))
+
+
+n = 4; % plot number
+subplot(subplotRows, subplotColumns, n)
+plotRight(cloud, MTD)
+xlabel(XaxisNames(n))
+
+fn = sprintf('%s.png', MCName);
+saveas(gcf, fn)
+end
+
+function plotLeft(var, MSF)
+yyaxis left
+plot(var, MSF, '*', 'MarkerSize',12, 'LineWidth', 3);
+ylabel('N^2')
+ylim([0, inf])
+end
+
+function plotRight(var, MTD)
+%yyaxis right
+plot(var, MTD, 'o', 'MarkerSize',12, 'LineWidth', 3);
+ylabel(['t [', char(0176),'C]'])
+ylim([0, inf])
+end
